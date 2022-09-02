@@ -3,6 +3,7 @@ import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pprint as p
+import os
 
 date = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD: ")
 URL = f"https://www.billboard.com/charts/hot-100/{date}"
@@ -23,8 +24,8 @@ songs_list = [song.getText().strip() for song in song_title_tags]
 
 
 
-CLIENT_ID = "2fc3dca3c4f7427fb9c6f32de2a4be4f"
-CLIENT_SECRET = "aa9720fb879f4ea8afba52ccd19c8e3f"
+CLIENT_ID = os.environ.get('CLIENT_ID')
+CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CLIENT_ID,
                                                client_secret=CLIENT_SECRET,
